@@ -5,16 +5,17 @@
 // --- Temperature Data - Message Protocol/Layout ------------------------------
 // Single transmission reception on the receiver obtains 4*8 bytes long message
 // i.e. inclusive of 8 redundancies. Such burst happens every 5 seconds. Here's
-// a sample message without redundancy: 01000001 00001001 10111110 11110110
+// a sample message without redundancy: 01000001 00001001 10111110 11110110,
+// which is equal to 109 Fahrenheit.
 //
 // Here's an apporach on how to decode the above 4 bytes message packet:
-// -----------------------------------------
-// |   | P1 | P2 | P3  |                   |
-// -----------------------------------------
-// | N1 | N2 | N3 | N4 | NN1| NN2| NN3| NN4|
-// -----------------------------------------
-//  0100 0001 0000 1001 1011 1110 1111 0110  = 109 Fahrenheit
-//
+// ---------------------------------------------------------
+// |      |  P1  |  P2  |  P3  |                           |
+// ---------------------------------------------------------
+// | N1   |  N2  |  N3  |  N4  |  NN1 |  NN2 |  NN3 |  NN4 |
+// ---------------------------------------------------------
+// | 0100 | 0001 | 0000 | 1001 | 1011 | 1110 | 1111 | 0110 | <- 109 Fahrenheit
+// ---------------------------------------------------------
 // N1 (Nibble 1) = Transmitter identifier of half a byte. Note! If the
 //                 transmitter is restarted then this nibble will differ.
 // N2 (Nibble 2/P1) = Payload >> 1st digit of temperature data in Fahrenheit
@@ -53,7 +54,6 @@ int pinData = 3;                // ORANGE wire connected to 3rd pin, which
                                 // provides temperature data every 5 seconds
 int pinLED_ReceivingData = 13;  // LED for indicating data reception on the
                                 // receiver end
-
 // --- Pulse Interval ----------------------------------------------------------
 int lowLogicPulseInterval = 2500;   // 2.5µs (microseconds)
 int highLogicPulseInterval = 5000;  // 5µs (microseconds)
@@ -154,7 +154,7 @@ boolean isInvalidData(String dataPacket) {
   // ------------------------------
   // Subcase1: On incorrect record length
   // Note! This case also tackles such a condition:
-  //  - Nibbles generated when any of the buttons are  being pressed on the
+  //  * Nibbles generated when any of the buttons are  being pressed on the
   //    receiver device
   if (dataPacket.length() != pulsesInTotal) {
     Serial.println("Fault: Pulse Length");
