@@ -1,0 +1,7 @@
+{
+	"name": "wthermometer-tap-decode-log",
+	"version": "0.0.1",
+	"dependencies": {
+		"serialport": "latest"
+	}
+}
