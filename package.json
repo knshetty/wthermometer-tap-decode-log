@@ -1,7 +1,8 @@
 {
-	"name": "wthermometer-tap-decode-log",
-	"version": "0.0.1",
-	"dependencies": {
-		"serialport": "latest"
-	}
+  "name": "wthermometer-tap-decode-log",
+  "version": "0.0.1",
+  "dependencies": {
+    "serialport": "latest",
+    "thingspeakclient": "^0.4.0"
+  }
 }
