@@ -18,8 +18,11 @@ You will need the following things properly installed on your computer.
 2. Change into the newly created directory
 3. `$ npm install`
 4. `$ npm install -g coffee-script`
-5. `$ coffee app.coffee`
+5. `$ coffee -c app.coffee`
 
+## Running / Development
+
+* `$ node app.js`
 
 ## Further Reading / Useful Links
 * https://github.com/DanialK/Arduino-NodeJs-Serialport
