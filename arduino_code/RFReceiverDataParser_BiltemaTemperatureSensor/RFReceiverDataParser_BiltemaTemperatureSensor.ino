@@ -94,7 +94,7 @@ void loop()
     if (!isInvalidData(dataPacket)) {
       //Serial.println("Temperature:");
       Serial.println(getPayload(dataPacket));
-      delay(1500);
+      delay(20000); // 20 seconds
     }
     else {
       Serial.println("ERROR: Invalid Data");
